@@ -24,21 +24,12 @@ export default defineConfig({
     name: "test",
     // the URL where your site is deployed, needed for SEO features like sitemap:
     baseUrl: "https://ld3z.github.io/testin",
-  },
-  mode: "static",
-  meta: {
-    root() {
-      return (
-        <>
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
-            rel="stylesheet"
-          />
-        </>
-      );
+    git: {
+      user: "ld3z",
+      repo: "testin",
+      branch: "main",
     },
   },
+  mode: "static",
 })
   .adapters(fumadocsMdx());
