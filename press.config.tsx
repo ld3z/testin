@@ -25,7 +25,7 @@ const docs = defineDocs({
 export default defineConfig({
   content: docs.toFumadocsSource(),
   site: {
-    name: "test",
+    name: "Site4",
     // the URL where your site is deployed, needed for SEO features like sitemap:
     baseUrl: "https://ld3z.github.io/testin",
     git: {
@@ -57,7 +57,7 @@ export default defineConfig({
             className="size-8"
             alt=""
           />
-          test
+          Site4
         </>
       ),
     },
