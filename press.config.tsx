@@ -23,7 +23,7 @@ export default defineConfig({
   site: {
     name: "test",
     // the URL where your site is deployed, needed for SEO features like sitemap:
-    baseUrl: "https://ld3z.github.io/test",
+    baseUrl: "https://ld3z.github.io/testin",
   },
   mode: "static",
   meta: {
