@@ -1,4 +1,5 @@
 import { defineConfig } from "fumapress";
+import { Image } from "fumapress/image";
 import { fumadocsMdx } from "fumapress/adapters/mdx";
 import { metaSchema, pageSchema } from "fumapress/adapters/mdx/schema";
 import { defineDocs } from "fumadocs-mdx/macro";
@@ -34,6 +35,33 @@ export default defineConfig({
     },
   },
   mode: "static",
+  meta: {
+    root() {
+      return (
+        <link
+          rel="icon"
+          href={`${import.meta.env.BASE_URL}favicon.png`}
+          type="image/png"
+        />
+      );
+    },
+  },
+  defaultLayoutProps: {
+    nav: {
+      title: (
+        <>
+          <Image
+            src={`${import.meta.env.BASE_URL}biggerIcon.png`}
+            width={64}
+            height={64}
+            className="size-8"
+            alt=""
+          />
+          test
+        </>
+      ),
+    },
+  },
 })
   .adapters(
     fumadocsMdx({
