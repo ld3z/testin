@@ -6,3 +6,5 @@
 dist
 .source
 src/pages.gen.ts
+
+.jampack/

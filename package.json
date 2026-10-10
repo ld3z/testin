@@ -5,12 +5,13 @@
   "sideEffects": false,
   "scripts": {
     "dev": "fumapress dev",
-    "build": "fumapress build",
+    "build": "fumapress build && pnpm exec jampack ./dist/public",
     "start": "fumapress start",
     "types:check": "tsc --noEmit"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",
+    "@divriots/jampack": "^0.34.2",
     "fumadocs-core": "^16.17.1",
     "fumadocs-mdx": "^15.4.7",
     "fumadocs-ui": "npm:@fumadocs/base-ui@^16.17.1",
