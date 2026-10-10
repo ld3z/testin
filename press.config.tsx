@@ -2,6 +2,9 @@ import { defineConfig } from "fumapress";
 import { fumadocsMdx } from "fumapress/adapters/mdx";
 import { metaSchema, pageSchema } from "fumapress/adapters/mdx/schema";
 import { defineDocs } from "fumadocs-mdx/macro";
+import defaultMdxComponents, { createRelativeLink } from "fumadocs-ui/mdx";
+import type { MDXComponents } from "mdx/types";
+import { ImageZoom, type ImageZoomProps } from "./src/components/image-zoom";
 
 const docs = defineDocs({
   dir: "content",
@@ -32,4 +35,14 @@ export default defineConfig({
   },
   mode: "static",
 })
-  .adapters(fumadocsMdx());
+  .adapters(
+    fumadocsMdx({
+      async getMdxComponents(page) {
+        return {
+          ...defaultMdxComponents,
+          a: createRelativeLink(await this.getLoader(), page),
+          img: (props) => <ImageZoom {...(props as ImageZoomProps)} />,
+        } satisfies MDXComponents;
+      },
+    }),
+  );

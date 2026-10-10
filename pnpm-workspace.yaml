@@ -4,3 +4,4 @@ allowBuilds:
   sharp: true
 minimumReleaseAgeExclude:
   - fumapress@1.6.1
+  - lucide-react@1.55.0
