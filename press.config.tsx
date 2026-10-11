@@ -3,9 +3,12 @@ import { Image } from "fumapress/image";
 import { fumadocsMdx } from "fumapress/adapters/mdx";
 import { metaSchema, pageSchema } from "fumapress/adapters/mdx/schema";
 import { defineDocs } from "fumadocs-mdx/macro";
+import { lucideIconsPlugin } from "fumadocs-core/source/plugins/lucide-icons";
 import defaultMdxComponents, { createRelativeLink } from "fumadocs-ui/mdx";
 import type { MDXComponents } from "mdx/types";
 import { ImageZoom, type ImageZoomProps } from "./src/components/image-zoom";
+import { Gallery } from "./src/components/gallery";
+import { Card, Cards } from "./src/components/card";
 
 const docs = defineDocs({
   dir: "content",
@@ -35,6 +38,9 @@ export default defineConfig({
     },
   },
   mode: "static",
+  loaderOptions: {
+    plugins: [lucideIconsPlugin()],
+  },
   meta: {
     root() {
       return (
@@ -70,6 +76,9 @@ export default defineConfig({
           ...defaultMdxComponents,
           a: createRelativeLink(await this.getLoader(), page),
           img: (props) => <ImageZoom {...(props as ImageZoomProps)} />,
+          Gallery,
+          Card,
+          Cards,
         } satisfies MDXComponents;
       },
     }),
