@@ -23,7 +23,7 @@ const sidebarFolders: { name: string; icon: ReactNode; pages: string[] }[] = [
   {
     name: "Resources",
     icon: <Clipboard />,
-    pages: ["cuphead"],
+    pages: ["cuphead", "stardew"],
   },
   {
     name: "Roblox",
