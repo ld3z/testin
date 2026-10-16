@@ -14,6 +14,7 @@ const icons = [
   "simple-icons:miraheze",
   "simple-icons:fandom",
   "simple-icons:discord",
+  "simple-icons:patreon",
   "codicon:twitter",
   "logos:youtube-icon",
   "mdi:spotify",

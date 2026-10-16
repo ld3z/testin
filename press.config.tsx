@@ -13,6 +13,7 @@ import type { ReactNode } from "react";
 import { ImageZoom, type ImageZoomProps } from "./src/components/image-zoom";
 import { Gallery } from "./src/components/gallery";
 import { Card, Cards } from "./src/components/card";
+import { Badge } from "./src/components/badge";
 import { Icon } from "./src/components/icon";
 
 /**
@@ -164,6 +165,7 @@ export default defineConfig({
           Gallery,
           Card,
           Cards,
+          Badge,
           Icon,
         } satisfies MDXComponents;
       },
