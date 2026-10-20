@@ -21,6 +21,7 @@ const icons = [
   "mdi:reddit",
   "selfhst:google-sheets",
   "selfhst:google-docs",
+  "ri:information-2-line",
 ];
 
 function iconifySubset(iconNames: string[]): Plugin {

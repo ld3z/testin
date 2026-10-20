@@ -15,6 +15,7 @@ import { Gallery } from "./src/components/gallery";
 import { Card, Cards } from "./src/components/card";
 import { Badge } from "./src/components/badge";
 import { Icon } from "./src/components/icon";
+import { Tooltip } from "./src/components/tooltip";
 
 /**
  * Sidebar folders only. Page files stay in `content/`, and their URLs stay the same.
@@ -167,6 +168,7 @@ export default defineConfig({
           Cards,
           Badge,
           Icon,
+          Tooltip,
         } satisfies MDXComponents;
       },
     }),
