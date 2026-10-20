@@ -19,6 +19,7 @@ const icons = [
   "logos:youtube-icon",
   "mdi:spotify",
   "mdi:reddit",
+  "mdi:github-face",
   "selfhst:google-sheets",
   "selfhst:google-docs",
   "ri:information-2-line",
