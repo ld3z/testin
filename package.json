@@ -4,28 +4,31 @@
   "type": "module",
   "sideEffects": false,
   "scripts": {
-    "dev": "fumapress dev",
-    "build": "fumapress build",
-    "start": "fumapress start",
-    "types:check": "tsc --noEmit"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "types:check": "astro sync && tsc --noEmit"
   },
   "dependencies": {
+    "@astrojs/react": "^7.1.4",
     "@base-ui/react": "^1.9.0",
     "@fontsource-variable/inter": "^5.3.0",
     "@fontsource-variable/jetbrains-mono": "^5.3.0",
     "@fuma-translate/react": "^1.0.2",
-    "@fumadocs/base-ui": "^16.17.10",
+    "@fumadocs/astro": "^0.2.1",
+    "@fumadocs/base-ui": "^16.18.2",
+    "@fumapress/astro": "^0.1.0",
     "@iconify/react": "^6.0.4",
+    "astro": "^7.4.7",
     "class-variance-authority": "^0.7.1",
     "cn": "^0.5.2",
-    "fumadocs-core": "^16.17.10",
-    "fumadocs-mdx": "^15.4.10",
-    "fumadocs-ui": "npm:@fumadocs/base-ui@^16.17.10",
-    "fumapress": "1.6.2",
+    "fumadocs-core": "^16.18.2",
+    "fumadocs-ui": "npm:@fumadocs/base-ui@^16.18.2",
     "lucide-react": "^1.68.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
-    "react-medium-image-zoom": "^5.4.9"
+    "react-medium-image-zoom": "^5.4.9",
+    "takumi-js": "^2.19.0"
   },
   "devDependencies": {
     "@iconify/json": "^2.2.553",

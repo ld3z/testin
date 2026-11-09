@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { ImageZoom } from './image-zoom';
+import { withBase } from '../lib/with-base';
 
 export interface GallerySlide {
   src: string;
@@ -13,13 +14,6 @@ export interface GallerySlide {
 }
 
 const AUTOPLAY_MS = 5000;
-
-function withBase(src: string) {
-  if (/^([a-z][a-z\d+.-]*:|\/\/)/i.test(src)) return src;
-  const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-  if (base && src.startsWith(`${base}/`)) return src;
-  return `${base}/${src.replace(/^\//, '')}`;
-}
 
 /** Screenshots in a strip that snaps one at a time; each opens full size. */
 export function Gallery({ slides }: { slides: GallerySlide[] }) {

@@ -1,21 +1,12 @@
-import { defineConfig } from "fumapress";
-import { Image } from "fumapress/image";
-import { fumadocsMdx } from "fumapress/adapters/mdx";
-import { metaSchema, pageSchema } from "fumapress/adapters/mdx/schema";
-import { defineDocs } from "fumadocs-mdx/macro";
+import { getCollection } from "astro:content";
+import { toFumadocsSource } from "@fumadocs/astro/source";
+import { createPress } from "@fumapress/astro/config";
 import type { LoaderPlugin } from "fumadocs-core/source";
 import { lucideIconsPlugin } from "fumadocs-core/source/plugins/lucide-icons";
 import type { Folder, Item, Node } from "fumadocs-core/page-tree";
-import defaultMdxComponents, { createRelativeLink } from "fumadocs-ui/mdx";
 import { Clipboard } from "lucide-react";
-import type { MDXComponents } from "mdx/types";
 import type { ReactNode } from "react";
-import { ImageZoom, type ImageZoomProps } from "./src/components/image-zoom";
-import { Gallery } from "./src/components/gallery";
-import { Card, Cards } from "./src/components/card";
-import { Badge } from "./src/components/badge";
 import { Icon } from "./src/components/icon";
-import { Tooltip } from "./src/components/tooltip";
 
 /**
  * Sidebar folders only. Page files stay in `content/`, and their URLs stay the same.
@@ -97,79 +88,49 @@ function isHome(url: string) {
   return path === base || path === "";
 }
 
-const docs = defineDocs({
-  dir: "content",
-  docs: {
-    async: true,
-    schema: pageSchema,
-    lastModified: true,
-    postprocess: {
-      includeProcessedMarkdown: true,
-    },
+export const app = createPress(
+  toFumadocsSource(await getCollection("docs"), await getCollection("meta")),
+  {
+    loaderPlugins: [lucideIconsPlugin(), sidebarFoldersPlugin()],
   },
-  meta: {
-    schema: metaSchema,
-  },
-});
+);
 
-export default defineConfig({
-  content: docs.toFumadocsSource(),
+export default app.config({
   site: {
     name: "Site4",
-    // the URL where your site is deployed, needed for SEO features like sitemap:
-    baseUrl: "https://ld3z.github.io/testin",
     git: {
       user: "ld3z",
       repo: "testin",
       branch: "main",
     },
   },
-  mode: "static",
-  loaderOptions: {
-    plugins: [lucideIconsPlugin(), sidebarFoldersPlugin()],
-  },
-  meta: {
-    root() {
-      return (
-        <link
-          rel="icon"
-          href={`${import.meta.env.BASE_URL}favicon.png`}
-          type="image/png"
-        />
-      );
-    },
-  },
-  defaultLayoutProps: {
-    nav: {
-      title: (
-        <>
-          <Image
-            src={`${import.meta.env.BASE_URL}biggerIcon.png`}
-            width={64}
-            height={64}
-            className="size-8"
-            alt=""
-          />
-          Site4
-        </>
-      ),
-    },
-  },
-})
-  .adapters(
-    fumadocsMdx({
-      async getMdxComponents(page) {
-        return {
-          ...defaultMdxComponents,
-          a: createRelativeLink(await this.getLoader(), page),
-          img: (props) => <ImageZoom {...(props as ImageZoomProps)} />,
-          Gallery,
-          Card,
-          Cards,
-          Badge,
-          Icon,
-          Tooltip,
-        } satisfies MDXComponents;
+  head({ page }) {
+    if (page) return;
+    return [
+      {
+        tag: "link",
+        attrs: { rel: "icon", href: this.withBase("/favicon.png"), type: "image/png" },
       },
-    }),
-  );
+    ];
+  },
+  ui: {
+    layoutProps() {
+      return {
+        nav: {
+          title: (
+            <>
+              <img
+                src={this.withBase("/biggerIcon.png")}
+                width={64}
+                height={64}
+                className="size-8"
+                alt=""
+              />
+              Site4
+            </>
+          ),
+        },
+      };
+    },
+  },
+});
